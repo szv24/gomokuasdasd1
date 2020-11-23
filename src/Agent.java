@@ -1,10 +1,11 @@
 ///LETN1,Szvoreny.Viktor@stud.u-szeged.hu
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.Random;
-import game.gmk.GomokuAction;
-import game.gmk.GomokuGame;
-import game.gmk.GomokuPlayer;
+import java.util.Set;
+
+import game.gmk.*;
 
 
 public class Agent extends GomokuPlayer {
@@ -31,15 +32,24 @@ public class Agent extends GomokuPlayer {
                 j = random.nextInt(board[i].length);
             }
             board[i][j] = color;
+
             return new GomokuAction(i, j);
         }
 
         // ellenfel lepesenek eltarolasa
         board[prevAction.i][prevAction.j] = 1 - color;
 
-
+        return null;
 
     }
+
+    Object[] mmab(int d, double myBest, double theirBest){
+        ArrayList<String> moveList;
+        Set<String> moves = new HashSet<String>();
+        ArrayList<String> places = board
+    }
+
+
 }
 
 
