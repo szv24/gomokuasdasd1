@@ -13,6 +13,17 @@ class iterator{
         
         iterator operator++(){
             ++p;
+            while (p != end && p->mark != mark)
+                ++p;
+            if (p == end) {
+                if (mark == 5)
+                    return *this;
+                else {
+                    mark++;
+                    p = start-1;
+                    return operator++();
+                }
+            }
             return *this;
         }
         
@@ -94,3 +105,32 @@ unsigned vector_set_to_set(const vector<set<unsigned>>& input, set<unsigned>& ou
 }
 ```
 
+##Iterator STL stuff
+
+```c++
+iterator& operator++() {
+      ++si;
+      if (si == (*v)[vi].length()) {
+        si = 0;
+        ++vi;
+        
+        while (vi < v->size() && (*v)[vi].empty())
+          ++vi;
+      }
+      return *this;
+    }
+    
+    char& operator*() {
+      return (*v)[vi][si];
+    }
+    
+    private:
+    vector<string>* v;
+    size_t vi, si = 0; // vege: vi == v.size()
+    
+    friend class strings;
+
+    iterator(vector<string>* v, size_t vi = 0) : v(v), vi(vi) {
+    }
+    
+```
