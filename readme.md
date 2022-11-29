@@ -105,7 +105,7 @@ unsigned vector_set_to_set(const vector<set<unsigned>>& input, set<unsigned>& ou
 }
 ```
 
-##Iterator STL stuff
+## Iterator STL stuff
 
 ```c++
 iterator& operator++() {
