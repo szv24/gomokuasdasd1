@@ -11,7 +11,7 @@ class iterator{
             return p;
         }
         
-        iterator operator++(){
+        iterator& operator++(){
             ++p;
             while (p != end && p->mark != mark)
                 ++p;
