@@ -133,4 +133,78 @@ iterator& operator++() {
     iterator(vector<string>* v, size_t vi = 0) : v(v), vi(vi) {
     }
     
+    //fo osztaly
+    iterator begin() {
+    size_t vi = 0;
+    while (vi < v.size() && v[vi].empty())
+      ++vi;
+    return iterator(&v, vi);
+  }
+  
+  iterator end() {
+    return iterator(&v, v.size());
+  }
+  
+  
+  //STACK-es azaz pointeres, mikor pointerek mutatnak a következő/előző elemre:
+class iterator {
+  public:
+    iterator() : _p(nullptr) { }
+
+    iterator(const iterator &it) : _p(it._p) { }
+
+    T& operator*() {
+      return _p->adat;
+    }
+
+    T* operator->() {
+      return &(_p->adat);
+    }
+
+    iterator& operator++() {
+      _p = _p->kov;
+      return *this;
+    }
+
+    iterator operator++(int) {
+      iterator temp(*this);
+      _p = _p->kov;
+      return temp;
+    }
+
+    iterator& operator--() {
+      _p = _p->elozo;
+      return *this;
+    }
+
+    iterator operator--(int) {
+      iterator temp(*this);
+      _p = _p->elozo;
+      return temp;
+    }
+
+    bool operator==(const iterator &it) const {
+      return _p == it._p;
+    }
+
+    bool operator!=(const iterator &it) const {
+      return _p != it._p;
+    }
+
+  private:
+    iterator(Elem *p) : _p(p) { }
+
+    Elem *_p;
+    friend class Stack<T>;
+  };
+
+//FŐ osztályba:
+  iterator begin() {
+    return iterator(fej);
+  }
+
+  iterator end() {
+    return iterator(nullptr);
+  }
+    
 ```
